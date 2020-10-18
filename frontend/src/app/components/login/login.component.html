@@ -1,3 +1,4 @@
+<app-nav></app-nav>
 <section class="section">
     <div class="container">
 
@@ -24,6 +25,12 @@
                 </div>
             </div>
         </form>
+        <br>
+        <div class="notification is-danger is-light"  *ngIf="err">
+            <button class="delete" (click)="dismiss()" ></button>
+            Credenciales incorrectas
+        </div>
         
     </div>
 </section>
+<app-footer></app-footer>

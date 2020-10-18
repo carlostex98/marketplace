@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {DataService} from '../../services/data.service';
+import {Router} from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-nav',
@@ -7,9 +10,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _data:DataService, private router:Router, private coo:CookieService) { }
+  l:any;
 
   ngOnInit(): void {
+    this.l=this._data.logueado;
+    //console.log("miau");
+  }
+
+  onOut():void{
+    this._data.logueado=false;
+    this.coo.set('auth','no');
+    this.router.navigate(['login']);
   }
 
 }

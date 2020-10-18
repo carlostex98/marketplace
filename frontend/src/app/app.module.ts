@@ -12,6 +12,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HomeComponent } from './components/home/home.component';
 import {ReactiveFormsModule, FormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import {AuthGuard} from './guards/auth.guard';
+import { CookieService } from 'ngx-cookie-service';
 
 const route : Routes =[
   {
@@ -26,6 +28,11 @@ const route : Routes =[
   {
     path:'register',
     component: RegisterComponent
+  },
+  {
+    path:'dashboard',
+    component: DashboardComponent,
+    canActivate: [AuthGuard]
   }
 ];
 
@@ -49,7 +56,7 @@ const route : Routes =[
       paramsInheritanceStrategy: 'always'
     })
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

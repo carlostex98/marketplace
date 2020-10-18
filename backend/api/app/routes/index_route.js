@@ -16,13 +16,22 @@ router.get('/', async (req, res) => {
     console.log( await qq.run('select count(*) as x from usuarios', [], false));
 });
 
-router.get('/authuser/:ids/:pss', async (req, res) => {
+router.post('/authuser', async (req, res) => {
     
-    const a = await users.requestUser(req.params.ids, req.params.pss);
-    res.status(200).json({
-        tipo:a[0].TIPO,
-        id_usuario:a[0].ID_USUARIO
-    });
+    const a = await users.requestUser(req.body.ids, req.body.pss);
+
+    if(a.length==0){
+        res.status(200).json({
+            tipo:'inv',
+            id_usuario:'inv'
+        });
+    }else{
+        res.status(200).json({
+            tipo:a[0].TIPO,
+            id_usuario:a[0].ID_USUARIO
+        });
+    }
+    
 });
 
 router.get('/load', async (req, res) => {

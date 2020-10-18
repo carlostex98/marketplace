@@ -18,14 +18,27 @@
         <div class="navbar-end">
             <div class="navbar-item">
                 <div class="buttons">
-                    <a class="button is-primary" routerLink="register">
-                        <strong>Registrarse</strong>
-                    </a>
-                    <a class="button is-light" routerLink="login">
-                        Ingresar
-                    </a>
+                    
+                    <div  *ngIf="l">
+                        <a class="button is-primary" routerLink="register" (click)="onOut()">
+                            <strong>salir</strong>
+                        </a>
+                    </div>
+
+
+                    <div  *ngIf="!l">
+                        <a class="button is-primary" routerLink="register">
+                            <strong>Registrarse</strong>
+                        </a>
+                        <a class="button is-light" routerLink="login">
+                            Ingresar
+                        </a>
+
+                    </div>
+
+                    
                 </div>
             </div>
         </div>
     </div>
-</nav>
+</nav> 
