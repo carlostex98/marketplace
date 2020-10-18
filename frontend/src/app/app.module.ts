@@ -5,11 +5,27 @@ import { AppComponent } from './app.component';
 import { NavComponent } from './components/nav/nav.component';
 import {RouterModule, Routes} from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
+import { PrincipalComponent } from './components/principal/principal.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { RegisterComponent } from './components/register/register.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { HomeComponent } from './components/home/home.component';
+import {ReactiveFormsModule, FormsModule} from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 const route : Routes =[
   {
+    path : '',
+    pathMatch: 'full',
+    component: PrincipalComponent
+  },
+  {
     path: 'login',
     component : LoginComponent
+  },
+  {
+    path:'register',
+    component: RegisterComponent
   }
 ];
 
@@ -17,11 +33,21 @@ const route : Routes =[
   declarations: [
     AppComponent,
     NavComponent,
-    LoginComponent
+    LoginComponent,
+    PrincipalComponent,
+    FooterComponent,
+    RegisterComponent,
+    DashboardComponent,
+    HomeComponent
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
-    RouterModule.forRoot(route)
+    FormsModule,
+    ReactiveFormsModule,
+    RouterModule.forRoot(route,{
+      paramsInheritanceStrategy: 'always'
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

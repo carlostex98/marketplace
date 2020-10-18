@@ -1,7 +1,29 @@
-<section class="section" >
-    <div class="container" >
-        ssssssssssssssssssssssss
-        sssssssssssssssssssssssss
-        ssssssssssssssssssssssss
+<section class="section">
+    <div class="container">
+
+        <form [formGroup]="userForm" >
+            <div class="field">
+                <label class="label">Correo</label>
+                <div class="control">
+                    <input class="input" type="text" placeholder="Correo" formControlName="correo" >
+                </div>
+            </div>
+    
+            <div class="field">
+                <label class="label">contraseña</label>
+                <div class="control ">
+                    <input class="input" type="text" placeholder="tu contraseña" formControlName="pass" >
+                </div>
+            </div>
+    
+            
+    
+            <div class="field is-grouped">
+                <div class="control">
+                    <button class="button is-link" (click)="onSubmit()" >Ingresar</button>
+                </div>
+            </div>
+        </form>
+        
     </div>
 </section>

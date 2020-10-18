@@ -1,38 +1,29 @@
 const oracledb = require('oracledb');
+//const { options } = require('../routes/index_route');
 
-const { llaves } = require('../../keys');
+cns = {
+  user: "system",
+  password: "oracle",
+  connectString: "localhost:49161",
+  sid: 'xe'
+}
 
-oracledb.outFormat = oracledb.OUT_FORMAT_OBJECT;
 
 
-
-async function run(queryx) {
-
-  let connection;
-
+async function run(queryx, binds, aut) {
   try {
-    connection = await oracledb.getConnection( {
-      user          : 'system',
-      password      : 'oracle',
-      connectString : "localhost:49161"
-    });
-
-    const result = await connection.execute(
-      queryx
-    );
+    options = {
+      autoCommit: aut
+    };
+    let cnn = await oracledb.getConnection(cns);
+    let result = await cnn.execute(queryx,binds, options);
+    cnn.release();
     return result;
-
-  } catch (err) {
-    console.error(err);
-  } finally {
-    if (connection) {
-      try {
-        await connection.close();
-      } catch (err) {
-        console.error(err);
-      }
-    }
+  } catch (error) {
+    console.log(error);
   }
+
+
 }
 
 module.exports.run = run;
