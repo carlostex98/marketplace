@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const qq = require('../database/database');
 const users = require('../helper/users');
+const format = require('../helper/format');
 var bodyParser = require('body-parser');
 
 
@@ -33,6 +34,32 @@ router.post('/authuser', async (req, res) => {
     }
     
 });
+
+
+router.post('/newuser', async (req, res) => {
+    
+    const { email, name, lname, country, nac, pss } = req.body;
+    await users.register(email, name, lname, country, nac, pss);
+    res.status(200).json({
+        status: 'Pendiente de aprobacion'
+    });
+    
+});
+
+
+
+router.get('/sss', async (req, res) => {
+    //res.send("Hoooola");
+    res.send( await qq.run('select * from usuarios', [], false));
+});
+
+
+router.get('/delete', async (req, res) => {
+    //res.send("Hoooola");
+    await format.truncate();
+    res.send( {dato:"bye"});
+});
+
 
 router.get('/load', async (req, res) => {
     let sql = `insert into usuarios
