@@ -6,10 +6,10 @@ import { map } from "rxjs/operators";
 import md5 from 'md5-ts';
 import { analyzeAndValidateNgModules } from '@angular/compiler';
 import { on } from 'process';
-import {DataService} from '../../services/data.service';
+import { DataService } from '../../services/data.service';
 import { CookieService } from 'ngx-cookie-service';
 
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -19,16 +19,17 @@ import {Router} from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private http: HttpClient, private router:Router, private _data:DataService, private coo:CookieService) { 
-    
+  constructor(private http: HttpClient, private router: Router, private _data: DataService, private coo: CookieService) {
+
   }
 
-  
+
 
   headers: HttpHeaders = new HttpHeaders({
     "Content-Type": "application/json"
   })
-  err:boolean=false;
+  err: boolean = false;
+  mensaje: string = '';
 
   userForm = new FormGroup({
     correo: new FormControl(''),
@@ -38,45 +39,56 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  
+
 
 
   onSubmit(): void {
     const e = this.userForm.value.correo;
     const f = md5(this.userForm.value.pass);
-    const url = base+"/authuser";
+    const url = base + "/authuser";
     this.http.post<any>(
       url,
       {
-        ids:e,
-        pss:f
+        ids: e,
+        pss: f
       },
-      {headers:this.headers}
-    ).subscribe(data=>this.onCheck(data));
+      { headers: this.headers }
+    ).subscribe(data => this.onCheck(data));
 
   }
 
 
-  dismiss(): void{
+  dismiss(): void {
     this.err = false;
   }
 
-  onCheck(ee):void{
+  onCheck(ee): void {
 
-    if(ee.tipo=='inv'){
+    if (ee.tipo == 'inv') {
       //mal ingreso
+      this.mensaje = 'El usuario no existe';
       this.err = true;
-      
-    }else{
-      if (ee.tipo=='A') {
-        this._data.logueado=true;
-        this._data.id_usuario=ee.id_usuario;
-        
-        this.coo.set('auth','yes');
-        this.coo.set('id_usuario',ee.id_usuario);
+
+    } else {
+      if (ee.tipo == 'A') {
+        this._data.logueado = true;
+        this._data.id_usuario = ee.id_usuario;
+
+        this.coo.set('auth', 'yes');
+        this.coo.set('id_usuario', ee.id_usuario);
         this.router.navigate(['dashboard']);
+      } else if (ee.tipo == 'C') {
+        this._data.logueado = true;
+        this._data.id_usuario = ee.id_usuario;
+
+        this.coo.set('auth', 'yes');
+        this.coo.set('id_usuario', ee.id_usuario);
+        this.router.navigate(['home']);
       } else {
-        console.log("normi");
+        //no cofirmado
+        this.mensaje = 'El usuario no esta confirmado';
+        this.err = true;
+
       }
     }
   }

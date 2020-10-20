@@ -39,12 +39,23 @@ router.post('/authuser', async (req, res) => {
 router.post('/newuser', async (req, res) => {
     
     const { email, name, lname, country, nac, pss } = req.body;
-    await users.register(email, name, lname, country, nac, pss);
+    const lx= await users.register(email, name, lname, country, nac, pss);
     res.status(200).json({
-        status: 'Pendiente de aprobacion'
+        status: lx
     });
     
 });
+
+router.post('/confirmar', async (req, res) => {
+    
+    const { hmail, email } = req.body;
+    await users.confirmar(hmail, email);
+    res.status(200).json({
+        status: 'dokix'
+    });
+    
+});
+
 
 
 

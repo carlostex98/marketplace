@@ -8,12 +8,12 @@ async function send(sub, content) {
 
   // create reusable transporter object using the default SMTP transport
   let transporter = nodemailer.createTransport({
-    host: "smtp.ethereal.email",
-    port: 587,
-    secure: false, // true for 465, false for other ports
+    service: "gmail",
+    host: "smtp.gmail.com",
     auth: {
-      user: testAccount.user, // generated ethereal user
-      pass: testAccount.pass, // generated ethereal password
+      type:'login',
+      user: 'carlostex98@gmail.com', 
+      pass: 'Carlos9198!!', 
     },
   });
 
@@ -21,13 +21,12 @@ async function send(sub, content) {
   let info = await transporter.sendMail({
     from: '"MarketPlace" <carlostex98@gmail.com>', // sender address
     to: sub, // list of receivers
-    subject: "Activacion de cuenta", 
-    text: content
+    subject: "Atencion al cliente", 
+    html: content
   });
 
-  console.log("Message sent: %s", info.messageId);
+  //console.log("Message sent: %s", info.messageId);
   
-  console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
   
 }
 

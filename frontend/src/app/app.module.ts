@@ -14,6 +14,7 @@ import {ReactiveFormsModule, FormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import {AuthGuard} from './guards/auth.guard';
 import { CookieService } from 'ngx-cookie-service';
+import { ConfirmComponent } from './components/confirm/confirm.component';
 
 const route : Routes =[
   {
@@ -33,6 +34,15 @@ const route : Routes =[
     path:'dashboard',
     component: DashboardComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path:'home',
+    component: HomeComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path:'confirm',
+    component: ConfirmComponent
   }
 ];
 
@@ -45,7 +55,8 @@ const route : Routes =[
     FooterComponent,
     RegisterComponent,
     DashboardComponent,
-    HomeComponent
+    HomeComponent,
+    ConfirmComponent
   ],
   imports: [
     HttpClientModule,
