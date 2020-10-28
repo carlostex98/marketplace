@@ -1,3 +1,60 @@
 <app-nav></app-nav>
-<p>home works!</p>
+<br>
+<div class="container">
+
+    <nav class="level">
+        <div class="level-item has-text-centered">
+            <div>
+                <p class="heading"> <a routerLink="/create" >Crear producto</a> </p>
+            </div>
+        </div>
+        <div class="level-item has-text-centered">
+            <div>
+                <p class="heading"> <a routerLink="/account" >Mi Cuenta</a> </p>
+            </div>
+        </div>
+        <div class="level-item has-text-centered">
+            <div>
+                <div>
+                    <p class="heading"> <a>Carrito</a> </p>
+                </div>
+            </div>
+        </div>
+        
+    </nav>
+    <br>
+
+    <div class="card mb-4" *ngFor="let p of productos ">
+        <div>
+            <div class="card-content">
+                <p class="title">
+                    {{p.PRODUCTO}}
+                </p>
+                <p class="subtitle">
+                    {{p.USUARIO}}
+                </p>
+    
+                <div class="content">
+                    {{p.DETALLE}}
+                </div>
+    
+            </div>
+            <footer class="card-footer">
+                <p class="card-footer-item">
+                    <span>
+                        Precio: {{p.PRECIO}}
+                    </span>
+                </p>
+                <p class="card-footer-item">
+                    <span>
+                        comprar
+                    </span>
+                </p>
+            </footer>
+        </div>  
+    </div>
+
+
+</div>
+<br>
 <app-footer></app-footer>

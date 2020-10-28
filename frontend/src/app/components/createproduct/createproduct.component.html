@@ -1,0 +1,57 @@
+<app-nav></app-nav>
+<div class="container">
+
+    <div>
+        <form [formGroup]="registerForm">
+
+
+            <div class="field">
+                <label class="label">Nombre del producto</label>
+                <div class="control">
+                    <input class="input" type="text" placeholder="Text input" formControlName="nombre">
+                </div>
+            </div>
+
+
+            <div class="field">
+                <label class="label">Detalle</label>
+                <div class="control">
+                    <input class="input" type="text" placeholder="Text input" formControlName="detalle">
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Precio</label>
+                <div class="control">
+                    <input class="input" type="text" placeholder="Text input" formControlName="precio">
+                </div>
+            </div>
+
+            <div class="select">
+                <select  formControlName="cat_id">
+                  <option *ngFor="let cat of dato" value="{{cat.ID_CATEGORIA}}"> {{cat.NOMBRE}} </option>
+                </select>
+            </div>
+            
+            <br>
+            <br>
+
+            <div class="field is-grouped">
+                <div class="control">
+                    <button class="button is-link" (click)="onSubmit()">Crear</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+    <br>
+    <div *ngIf="show">
+        <div class="notification is-danger is-light">
+            <button class="delete"  (click)="regresar()"></button>
+            {{mostrar}}
+        </div>
+    </div>
+
+
+</div>
+<app-footer></app-footer>

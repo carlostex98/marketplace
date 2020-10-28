@@ -15,6 +15,10 @@ import { HttpClientModule } from '@angular/common/http';
 import {AuthGuard} from './guards/auth.guard';
 import { CookieService } from 'ngx-cookie-service';
 import { ConfirmComponent } from './components/confirm/confirm.component';
+import { CategoriesComponent } from './components/categories/categories.component';
+import { UsersComponent } from './components/users/users.component';
+import { AccountComponent } from './components/account/account.component';
+import { CreateproductComponent } from './components/createproduct/createproduct.component';
 
 const route : Routes =[
   {
@@ -43,6 +47,26 @@ const route : Routes =[
   {
     path:'confirm',
     component: ConfirmComponent
+  },
+  {
+    path:'categories',
+    component: CategoriesComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'users',
+    component: UsersComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'account',
+    component: AccountComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'create',
+    component: CreateproductComponent,
+    canActivate: [AuthGuard]
   }
 ];
 
@@ -56,7 +80,11 @@ const route : Routes =[
     RegisterComponent,
     DashboardComponent,
     HomeComponent,
-    ConfirmComponent
+    ConfirmComponent,
+    CategoriesComponent,
+    UsersComponent,
+    AccountComponent,
+    CreateproductComponent
   ],
   imports: [
     HttpClientModule,

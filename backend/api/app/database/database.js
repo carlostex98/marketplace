@@ -1,6 +1,6 @@
 const oracledb = require('oracledb');
 //const { options } = require('../routes/index_route');
-
+oracledb.fetchAsString = [ oracledb.CLOB ];
 cns = {
   user: "system",
   password: "oracle",

@@ -4,30 +4,28 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { base } from '../../keys/con';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-users',
+  templateUrl: './users.component.html',
+  styleUrls: ['./users.component.css']
 })
-export class HomeComponent implements OnInit {
+export class UsersComponent implements OnInit {
 
   constructor(public http: HttpClient) { }
   headers: HttpHeaders = new HttpHeaders({
     "Content-Type": "application/json"
   });
-
-  productos: any = [];
+  usr: any = [];
 
   ngOnInit(): void {
-    this.requestProd();
+    this.requestUsers();
   }
 
-
-  public requestProd():void{
-    //console.log("yes");
-    const url = base + "/products";
+  public requestUsers():void{
+    console.log("yes");
+    const url = base + "/users";
     this.http.get<any>(
       url
-    ).subscribe(data => { this.productos=data; });
+    ).subscribe(data => { this.usr=data;});
     
   }
 
