@@ -16,7 +16,15 @@
         <div class="level-item has-text-centered">
             <div>
                 <div>
-                    <p class="heading"> <a>Carrito</a> </p>
+                    <p class="heading" routerLink="/cart" > <a>Carrito</a> </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="level-item has-text-centered">
+            <div>
+                <div>
+                    <p class="heading" routerLink="/chats" > <a>Chats</a> </p>
                 </div>
             </div>
         </div>
@@ -47,7 +55,7 @@
                 </p>
                 <p class="card-footer-item">
                     <span>
-                        comprar
+                        <a routerLink="/detail/{{p.ID_PRODUCTO}}" >Ver mas</a>
                     </span>
                 </p>
             </footer>

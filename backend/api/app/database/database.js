@@ -1,6 +1,7 @@
 const oracledb = require('oracledb');
 //const { options } = require('../routes/index_route');
 oracledb.fetchAsString = [ oracledb.CLOB ];
+
 cns = {
   user: "system",
   password: "oracle",
@@ -17,7 +18,11 @@ async function run(queryx, binds, aut) {
     };
     let cnn = await oracledb.getConnection(cns);
     let result = await cnn.execute(queryx,binds, options);
-    cnn.release();
+    if(aut){
+      await cnn.commit();
+    }
+    
+    cnn.close();
     return result;
   } catch (error) {
     console.log(error);

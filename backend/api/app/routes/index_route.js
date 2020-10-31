@@ -5,6 +5,9 @@ const users = require('../helper/users');
 const format = require('../helper/format');
 const categories = require('../helper/category');
 const product = require('../helper/products');
+const cart = require('../helper/cart');
+const denuncias = require('../helper/denuncias');
+const chat = require('../helper/chat');
 var bodyParser = require('body-parser');
 
 
@@ -16,7 +19,7 @@ oracledb.outFormat = oracledb.OUT_FORMAT_OBJECT
 
 router.get('/', async (req, res) => {
     res.send("Hoooola");
-    console.log(await qq.run('select count(*) as x from usuarios', [], false));
+    //console.log(await product.d_like(2, 1));
 });
 
 router.post('/authuser', async (req, res) => {
@@ -129,8 +132,8 @@ router.post('/modifaccount', async (req, res) => {
 
 router.post('/newproduct', async (req, res) => {
 
-    const { id_usuario, nombre, detalle, precio, id_categoria } = req.body;
-    const t1 = await product.nuevo(id_usuario, nombre, detalle, precio, id_categoria);
+    const { id_usuario, nombre, detalle, precio, id_categoria, claves } = req.body;
+    const t1 = await product.nuevo(id_usuario, nombre, detalle, precio, id_categoria, claves);
     res.status(200).json(t1);
 
 });
@@ -141,6 +144,165 @@ router.get('/products', async (req, res) => {
     const e = await product.ver();
     res.send(e);
 });
+
+router.get('/detail/:id', async (req, res) => {
+    //res.send("Hoooola");
+    const a = req.params.id;
+    const e = await product.verUno(a);
+    res.send(e);
+});
+
+
+router.get('/comments/:id', async (req, res) => {
+    //res.send("Hoooola");
+    const a = req.params.id;
+    const e = await product.comments(a);
+    res.send(e);
+});
+
+router.get('/likes/:id', async (req, res) => {
+    const a = req.params.id;
+    const e = await product.likesProd(a);
+    res.send(e);
+});
+
+router.get('/mylike/:ids/:idp', async (req, res) => {
+    const a = req.params.ids;
+    const b = req.params.idp;
+    const e = await product.gu_like(a, b);
+    res.send({ estado: e });
+});
+
+
+router.get('/cart/:ids', async (req, res) => {
+    const a = req.params.ids;
+    const e = await cart.verCarrito(a);
+    res.send(e);
+});
+
+router.get('/ctotal/:ids', async (req, res) => {
+    const a = req.params.ids;
+    const e = await cart.montoCarrito(a);
+    res.send({
+        total: e
+    });
+});
+
+router.get('/denuncias', async (req, res) => {
+    const e = await denuncias.listar();
+    res.send(e);
+});
+
+router.post('/desactivar', async (req, res) => {
+
+    const { id_producto } = req.body;
+    const e = await denuncias.desactivar(id_producto);
+    res.status(200).json(e);
+
+});
+
+router.post('/activar', async (req, res) => {
+
+    const { id_producto } = req.body;
+    const e = await denuncias.activar(id_producto);
+    res.status(200).json(e);
+
+});
+
+
+router.post('/ncprod', async (req, res) => {
+
+    const { id_usuario, id_producto } = req.body;
+    const e = await cart.agregarCarrito(id_usuario, id_producto);
+    res.status(200).json(e);
+
+});
+
+router.post('/delcart', async (req, res) => {
+
+    const { id_usuario } = req.body;
+    const e = await cart.eliminarCarritoTodo(id_usuario);
+    res.status(200).json(e);
+
+});
+
+router.post('/dcprod', async (req, res) => {
+
+    const { id_usuario, id_producto } = req.body;
+    const e = await cart.quitarCarrito(id_usuario, id_producto);
+    res.status(200).json(e);
+
+});
+
+router.post('/mcprod', async (req, res) => {
+
+    const { id_usuario, id_producto, cantidad } = req.body;
+    const e = await cart.cantidadCarrito(id_usuario, id_producto, cantidad);
+    res.status(200).json(e);
+
+});
+
+
+router.post('/newcomment', async (req, res) => {
+
+    const { id_usuario, id_producto, comentario } = req.body;
+    const e = await product.newComment(id_usuario, id_producto, comentario);
+    res.status(200).json(e);
+
+});
+
+router.post('/newden', async (req, res) => {
+
+    const { id_usuario, id_producto, comentario } = req.body;
+    await product.newDen(id_usuario, id_producto, comentario);
+    res.status(200).json({ e: 'doki' });
+
+});
+
+
+router.post('/dlike', async (req, res) => {
+
+    const { id_usuario, id_producto } = req.body;
+    await product.d_like(id_usuario, id_producto);
+    res.status(200).json({ e: 'doki' });
+
+});
+
+
+router.post('/mlike', async (req, res) => {
+
+    const { id_usuario, id_producto, tipo } = req.body;
+    await product.m_like(id_usuario, id_producto, tipo);
+    res.status(200).json({ e: 'doki' });
+
+});
+
+router.post('/nlike', async (req, res) => {
+
+    const { id_usuario, id_producto, tipo } = req.body;
+    const c = await product.n_like(id_usuario, id_producto, tipo);
+    res.status(200).json(c);
+
+});
+
+router.post('/ncons', async (req, res) => {
+    const { id_usuario, id_vendedor } = req.body;
+    const c = await chat.crearChat(id_usuario, id_vendedor);
+    res.status(200).json(c);
+});
+
+router.get('/cvendedor/:ids', async (req, res) => {
+    const a = req.params.ids;
+    const e = await chat.listarChatsVendedor(a);
+    res.send(e);
+});
+
+router.get('/ccliente/:ids', async (req, res) => {
+    const a = req.params.ids;
+    const e = await chat.listarChatsCliente(a);
+    res.send(e);
+});
+
 
 
 module.exports = router;

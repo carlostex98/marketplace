@@ -20,7 +20,8 @@ export class CreateproductComponent implements OnInit {
     nombre: new FormControl(''),
     detalle: new FormControl(''),
     precio: new FormControl(''),
-    cat_id: new FormControl('')
+    cat_id: new FormControl(''),
+    claves: new FormControl('')
   });
 
   show: boolean = false;
@@ -55,7 +56,8 @@ export class CreateproductComponent implements OnInit {
           nombre: this.registerForm.value.nombre,
           detalle: this.registerForm.value.detalle,
           precio: this.registerForm.value.precio,
-          id_categoria: this.registerForm.value.cat_id
+          id_categoria: this.registerForm.value.cat_id,
+          claves: this.registerForm.value.claves
         },
         { headers: this.headers }
       ).subscribe(data => this.message());

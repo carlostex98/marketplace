@@ -19,6 +19,10 @@ import { CategoriesComponent } from './components/categories/categories.componen
 import { UsersComponent } from './components/users/users.component';
 import { AccountComponent } from './components/account/account.component';
 import { CreateproductComponent } from './components/createproduct/createproduct.component';
+import { DetailComponent } from './components/detail/detail.component';
+import { CartComponent } from './components/cart/cart.component';
+import { DenunciasComponent } from './components/denuncias/denuncias.component';
+import { ChatsComponent } from './components/chats/chats.component';
 
 const route : Routes =[
   {
@@ -67,6 +71,26 @@ const route : Routes =[
     path: 'create',
     component: CreateproductComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'detail/:idp',
+    component: DetailComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'cart',
+    component: CartComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'denuncias',
+    component: DenunciasComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'chats',
+    component: ChatsComponent,
+    canActivate: [AuthGuard]
   }
 ];
 
@@ -84,7 +108,11 @@ const route : Routes =[
     CategoriesComponent,
     UsersComponent,
     AccountComponent,
-    CreateproductComponent
+    CreateproductComponent,
+    DetailComponent,
+    CartComponent,
+    DenunciasComponent,
+    ChatsComponent
   ],
   imports: [
     HttpClientModule,

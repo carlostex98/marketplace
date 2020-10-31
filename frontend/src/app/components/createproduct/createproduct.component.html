@@ -32,6 +32,13 @@
                   <option *ngFor="let cat of dato" value="{{cat.ID_CATEGORIA}}"> {{cat.NOMBRE}} </option>
                 </select>
             </div>
+
+            <div class="field">
+                <label class="label">Palabras clave</label>
+                <div class="control">
+                    <input class="input" type="text" placeholder="Text input" formControlName="claves">
+                </div>
+            </div>
             
             <br>
             <br>
