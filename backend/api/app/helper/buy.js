@@ -34,7 +34,7 @@ async function comprar(id_usuario) {
     //fin vendedores
     await debitarCliente(id_usuario, a2);
     //await notificarComprador(id_usuario,cart, a2);
-    //await eliminarCarritoTodo(id_usuario);
+    await eliminarCarritoTodo(id_usuario);
     return { mensaje: "yes" }
 
 }

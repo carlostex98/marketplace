@@ -9,6 +9,7 @@ const cart = require('../helper/cart');
 const denuncias = require('../helper/denuncias');
 const chat = require('../helper/chat');
 const buy = require('../helper/buy');
+const reports = require('../helper/Reports');
 var bodyParser = require('body-parser');
 
 
@@ -321,6 +322,53 @@ router.post('/xcompra', async (req, res) => {
     const { id_usuario } = req.body;
     const c = await buy.comprar(id_usuario);
     res.status(200).json(c);
+});
+
+//reportes endpoints
+router.get('/rep1', async (req, res) => {
+    const e = await reports.reporte1();
+    res.send(e);
+});
+
+
+router.get('/rep2', async (req, res) => {
+    const e = await reports.reporte2();
+    res.send(e);
+});
+
+router.get('/rep3', async (req, res) => {
+    const e = await reports.reporte3();
+    res.send(e);
+});
+
+router.get('/rep4', async (req, res) => {
+    const e = await reports.reporte4();
+    res.send(e);
+});
+
+router.get('/rep5', async (req, res) => {
+    const e = await reports.reporte5();
+    res.send(e);
+});
+
+router.get('/rep5x', async (req, res) => {
+    const e = await reports.reporte5x();
+    res.send(e);
+});
+
+router.get('/rep6', async (req, res) => {
+    const e = await reports.reporte6();
+    res.send(e);
+});
+
+router.get('/rep7', async (req, res) => {
+    const e = await reports.reporte7();
+    res.send(e);
+});
+
+router.get('/rep8', async (req, res) => {
+    const e = await reports.reporte8();
+    res.send(e);
 });
 
 

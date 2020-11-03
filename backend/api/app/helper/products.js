@@ -2,8 +2,8 @@ const qq = require('../database/database');
 
 
 async function nuevo(id_usuario, nombre, detalle, precio, id_categoria, claves) {
-    let sql = `insert into productos(id_producto, nombre, detalle, precio, imagen, p_clave, estado) 
-    values(:a, :b, :c, :d, :e, :f, :g)`;
+    let sql = `insert into productos(id_producto, nombre, detalle, precio, imagen, p_clave, estado, ventas) 
+    values(:a, :b, :c, :d, :e, :f, :g, :h)`;
 
     //calcular id 
     const t1 = `select count(*) as x from productos`;
@@ -11,7 +11,7 @@ async function nuevo(id_usuario, nombre, detalle, precio, id_categoria, claves) 
     let ids = b[0].X;
 
     //crea producto
-    await qq.run(sql, [ids + 1, nombre, detalle, precio, 'f', claves, 1], true);
+    await qq.run(sql, [ids + 1, nombre, detalle, precio, 'f', claves, 1, 0], true);
 
 
     //producto usuario
