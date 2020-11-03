@@ -8,6 +8,7 @@ const product = require('../helper/products');
 const cart = require('../helper/cart');
 const denuncias = require('../helper/denuncias');
 const chat = require('../helper/chat');
+const buy = require('../helper/buy');
 var bodyParser = require('body-parser');
 
 
@@ -303,6 +304,24 @@ router.get('/ccliente/:ids', async (req, res) => {
     res.send(e);
 });
 
+
+router.get('/conv/:idc', async (req, res) => {
+    const a = req.params.idc;
+    const e = await chat.mensajes(a);
+    res.send(e);
+});
+
+router.post('/nmens', async (req, res) => {
+    const { id_conv, id_usuario, texto } = req.body;
+    const c = await chat.nuevo(id_conv, id_usuario, texto);
+    res.status(200).json(c);
+});
+
+router.post('/xcompra', async (req, res) => {
+    const { id_usuario } = req.body;
+    const c = await buy.comprar(id_usuario);
+    res.status(200).json(c);
+});
 
 
 module.exports = router;

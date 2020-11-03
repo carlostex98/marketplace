@@ -23,6 +23,7 @@ import { DetailComponent } from './components/detail/detail.component';
 import { CartComponent } from './components/cart/cart.component';
 import { DenunciasComponent } from './components/denuncias/denuncias.component';
 import { ChatsComponent } from './components/chats/chats.component';
+import { ConvComponent } from './components/conv/conv.component';
 
 const route : Routes =[
   {
@@ -91,6 +92,11 @@ const route : Routes =[
     path: 'chats',
     component: ChatsComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'conv/:idconv',
+    component: ConvComponent,
+    canActivate: [AuthGuard]
   }
 ];
 
@@ -112,7 +118,8 @@ const route : Routes =[
     DetailComponent,
     CartComponent,
     DenunciasComponent,
-    ChatsComponent
+    ChatsComponent,
+    ConvComponent
   ],
   imports: [
     HttpClientModule,

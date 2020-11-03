@@ -2,6 +2,13 @@
 
 <div class="container">
     <br>
+
+    <nav class="breadcrumb" aria-label="breadcrumbs">
+        <ul>
+          <li><a routerLink="/home">Inicio</a></li>
+          <li class="is-active"><a href="#" aria-current="page">chats</a></li>
+        </ul>
+      </nav>
     <br>
 
     <h2>Chats con Vendedores</h2>
@@ -15,8 +22,8 @@
                     </span>
 
                 </div>
-                <div>
-                    <button class="button">Hablar con el hijueputa</button>
+                <div class="buttons has-addons is-right" >
+                    <button class="button" routerLink="/conv/{{p.ID_CONS}}" >Ir al chat</button>
                 </div>
 
             </div>
@@ -40,8 +47,8 @@
                     </span>
 
                 </div>
-                <div>
-                    <button class="button">Hablar con el hijueputa</button>
+                <div class="buttons has-addons is-right" >
+                    <button class="button" routerLink="/conv/{{p.ID_CONS}}" >Ir al chat</button>
                 </div>
 
             </div>

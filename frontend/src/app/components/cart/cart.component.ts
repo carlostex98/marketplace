@@ -121,4 +121,18 @@ export class CartComponent implements OnInit {
     this.llenarCarro();
   }
 
+  comprar():void{
+    let s = +this._data.id_usuario;
+
+    const url = base + "/xcompra";
+    this.http.post<any>(
+      url,
+      {
+        id_usuario: s
+      },
+      { headers: this.headers }
+    ).subscribe(data => { console.log(data) });
+  }
+
+
 }

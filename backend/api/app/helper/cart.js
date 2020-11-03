@@ -62,9 +62,6 @@ async function montoCarrito(id_usuario) {
     inner join productos p on p.id_producto = producto_carrito.id_producto_fk
     inner join carrito_usuario cu on producto_carrito.id_carrito_fk = cu.id_carrito_fk
     where id_usuario_fk = :a`;
-
-    
-
     const f = (await qq.run(sql, [id_usuario], false)).rows[0].X;
     return f;
 }
