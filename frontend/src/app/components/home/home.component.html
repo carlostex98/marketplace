@@ -5,18 +5,18 @@
     <nav class="level">
         <div class="level-item has-text-centered">
             <div>
-                <p class="heading"> <a routerLink="/create" >Crear producto</a> </p>
+                <p class="heading"> <a routerLink="/create">Crear producto</a> </p>
             </div>
         </div>
         <div class="level-item has-text-centered">
             <div>
-                <p class="heading"> <a routerLink="/account" >Mi Cuenta</a> </p>
+                <p class="heading"> <a routerLink="/account">Mi Cuenta</a> </p>
             </div>
         </div>
         <div class="level-item has-text-centered">
             <div>
                 <div>
-                    <p class="heading" routerLink="/cart" > <a>Carrito</a> </p>
+                    <p class="heading" routerLink="/cart"> <a>Carrito</a> </p>
                 </div>
             </div>
         </div>
@@ -24,13 +24,43 @@
         <div class="level-item has-text-centered">
             <div>
                 <div>
-                    <p class="heading" routerLink="/chats" > <a>Chats</a> </p>
+                    <p class="heading" routerLink="/chats"> <a>Chats</a> </p>
                 </div>
             </div>
         </div>
-        
+
     </nav>
     <br>
+    <div class="notification">
+        <form [formGroup]="bsqForm">
+            
+            <div class="field">
+                <label class="label">Palabras clave</label>
+                <div class="control">
+                    <input class="input" type="text" placeholder="Text input" formControlName="claves">
+                </div>
+            </div>
+            <br>
+            <div class="select">
+                
+                <select formControlName="cat_id">
+                    <option *ngFor="let cat of dato" value="{{cat.NOMBRE}}"> {{cat.NOMBRE}} </option>
+                </select>
+
+            </div>
+        </form>
+
+
+
+        <div class="buttons has-addons is-right">
+            <button class="button" (click)="limpiar()">Limpiar filtros</button>
+            <button class="button" (click)="submitCat()">Buscar categoria</button>
+            <button class="button" (click)="submitClave()" >Buscar palabras clave</button>
+            <button class="button" (click)="reversa()">Invertir</button>
+        </div>
+    </div>
+    <br>
+
 
     <div class="card mb-4" *ngFor="let p of productos ">
         <div>
@@ -39,13 +69,21 @@
                     {{p.PRODUCTO}}
                 </p>
                 <p class="subtitle">
-                    {{p.USUARIO}}
+                    Usuario: {{p.USUARIO}}
                 </p>
-    
+
                 <div class="content">
-                    {{p.DETALLE}}
+                    Detalle: {{p.DETALLE}}
                 </div>
-    
+
+                <div class="content">
+                    Categoria: {{p.CATEGORIA}}
+                </div>
+
+                <div class="content">
+                    Palabras clave: {{p.P_CLAVE}}
+                </div>
+
             </div>
             <footer class="card-footer">
                 <p class="card-footer-item">
@@ -55,11 +93,11 @@
                 </p>
                 <p class="card-footer-item">
                     <span>
-                        <a routerLink="/detail/{{p.ID_PRODUCTO}}" >Ver mas</a>
+                        <a routerLink="/detail/{{p.ID_PRODUCTO}}">Ver mas</a>
                     </span>
                 </p>
             </footer>
-        </div>  
+        </div>
     </div>
 
 

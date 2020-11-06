@@ -51,7 +51,7 @@ export class ReportsComponent implements OnInit {
 
   public rep1():void{
     //console.log("yes");
-    const url = base + "/rep1";
+    const url = base + "/bitacora";
     this.http.get<any>(
       url
     ).subscribe(data => { this.set1(data); });
@@ -59,6 +59,10 @@ export class ReportsComponent implements OnInit {
 
   set1(dta):void{
     this.r1 = dta;
+  }
+
+  cambio():void{
+    this.r1 = this.r1.slice().reverse();
   }
   
 

@@ -23,8 +23,11 @@ async function crearChat(id_usuario, id_vendedor){
         values(:a, :b, :c)`;
 
         await qq.run(t3, [b+1,id_usuario, id_vendedor], true);
+        return {id:b+1};
     }
-    return { e: 'doki' };
+    const t2 = `select id_cons from conversacion where id_emisor_fk = :a and id_receptor_fk = :b`;
+    let an = (await qq.run(t2, [id_usuario, id_vendedor], false)).rows[0].ID_CONS;
+    return { id: an };
 }
 
 async function listarChatsCliente(id_usuario){

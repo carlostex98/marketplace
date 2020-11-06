@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { base } from '../../keys/con';
 import { ActivatedRoute } from '@angular/router';
 import { DataService } from '../../services/data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-detail',
@@ -12,7 +13,7 @@ import { DataService } from '../../services/data.service';
 })
 export class DetailComponent implements OnInit {
 
-  constructor(public http: HttpClient, private _ac: ActivatedRoute, private _data: DataService) { }
+  constructor(public http: HttpClient, private _ac: ActivatedRoute, private _data: DataService, private router: Router) { }
 
   public productos: any = {};
   comentarios: any = [];
@@ -96,7 +97,11 @@ export class DetailComponent implements OnInit {
         id_producto: a
       },
       { headers: this.headers }
-    ).subscribe(data => {console.log(data)});
+    ).subscribe(data => {this.redCart(data)});
+  }
+
+  redCart(idc):void{
+    this.router.navigate(['/cart']);
   }
 
 
@@ -288,8 +293,12 @@ export class DetailComponent implements OnInit {
         id_vendedor: id_us_p
       },
       { headers: this.headers }
-    ).subscribe(data => {console.log(data)});
+    ).subscribe(data => {this.chrt(data)});
     
+  }
+
+  chrt(ee):void{
+    this.router.navigate([`/conv/${ee.id}`]);
   }
 
 

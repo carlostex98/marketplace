@@ -36,7 +36,9 @@
                     <div *ngIf="p.ESTADO == 0">
                         <button class="button" (click)="activarProducto(p.ID_PRODUCTO_FK)">Activar producto</button>
                     </div>
-                    
+                    <div>
+                        <button class="button" (click)="delDenuncia(p.ID_DENUNCIA_FK)">Eliminar denuncia</button>
+                    </div>
                     
                 </div>
             </div>

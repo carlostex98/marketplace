@@ -18,7 +18,29 @@
     <br>
 
     <div *ngIf="etq[0]">
-        Content to render when condition is true.
+        <br>
+        <button class="button" (click)="cambio()">Invertir</button>
+        <br>
+        <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Correo</th>
+                    <th>Fecha</th>
+                    <th>Asunto</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr *ngFor="let cat of r1">
+                    <td>{{cat.NOMBRE}} {{cat.APELLIDO}}</td>
+                    <td>{{cat.CORREO}}</td>
+                    <td>{{cat.FECHA}}</td>
+                    <td>{{cat.ASUNTO}}</td>
+                </tr>
+
+            </tbody>
+        </table>
     </div>
     <div *ngIf="etq[1]">
         <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">

@@ -28,12 +28,14 @@ async function nuevo(id_usuario, nombre, detalle, precio, id_categoria, claves) 
 
 
 async function ver() {
-    const sql = `select id_producto, usuarios.nombre as usuario, p.nombre as producto, c2.nombre as categoria, p.precio, p.detalle from usuarios
+    const sql = `select id_producto, usuarios.nombre as usuario, p.nombre as producto, c2.nombre as categoria, p.precio, p.detalle, p.p_clave from usuarios
     inner join cliente_producto cp on usuarios.id_usuario = cp.id_usuario_fk
     inner join productos p on p.id_producto = cp.id_producto_fk
     inner join catogoria_producto cp2 on p.id_producto = cp2.id_producto_fk
     inner join categorias c2 on c2.id_categoria = cp2.id_categoria_fk
-    where estado = :a`;
+    where estado = :a
+    order by p.precio
+    `;
 
     const res = (await qq.run(sql, [1], false)).rows;
     return res;
@@ -41,7 +43,7 @@ async function ver() {
 
 
 async function verUno(id) {
-    const sql = `select id_producto, usuarios.nombre as usuario,usuarios.apellido as apellido ,p.nombre as producto, 
+    const sql = `select id_producto,p_clave, usuarios.nombre as usuario,usuarios.apellido as apellido ,p.nombre as producto, 
     c2.nombre as categoria, p.precio, p.detalle, id_usuario from usuarios
     inner join cliente_producto cp on usuarios.id_usuario = cp.id_usuario_fk
     inner join productos p on p.id_producto = cp.id_producto_fk

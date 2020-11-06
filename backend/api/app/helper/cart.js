@@ -12,6 +12,9 @@ async function verCarrito(id_us) {
 }
 
 async function agregarCarrito(id_usuario, id_producto) {
+
+
+
     const sql = `insert into producto_carrito(id_carrito_fk, id_producto_fk, cantidad)
     values(:a, :b, :c)`;
 
@@ -19,8 +22,14 @@ async function agregarCarrito(id_usuario, id_producto) {
     let a1 = (await qq.run(t1, [id_usuario], true)).rows[0];
     let a2 = a1.ID_CARRITO_FK; //id del carrito del usuario
 
-    await qq.run(sql, [a2, id_producto, 1], true);
-    return {e: 'doki'};
+    const t3 = `select count(*) as x from producto_carrito where id_carrito_fk = :a and id_producto_fk = :b`;
+    let a = (await qq.run(t3, [a2, id_producto], false)).rows[0].X;
+    if(a==0){
+        await qq.run(sql, [a2, id_producto, 1], true);
+        return {carrito: a2};
+    }
+    return {carrito: a2};
+    
 }
 async function eliminarCarritoTodo(id_usuario) {
     const sql = `delete from producto_carrito where id_carrito_fk = :a`;
@@ -65,7 +74,7 @@ async function montoCarrito(id_usuario) {
     const f = (await qq.run(sql, [id_usuario], false)).rows[0].X;
     return f;
 }
- 
+
 
 module.exports.verCarrito = verCarrito;
 module.exports.agregarCarrito = agregarCarrito;

@@ -66,4 +66,18 @@ export class DenunciasComponent implements OnInit {
     
   }
 
+  delDenuncia(id_den):void{
+    const url = base + "/delden";
+    this.http.post<any>(
+      url,
+      {
+        id_denuncia: id_den
+      },
+      { headers: this.headers }
+    ).subscribe(data => { console.log(data) });
+    this.router.navigateByUrl('/denuncias', { skipLocationChange: true }).then(() => {
+      this.router.navigate(['denuncias']);
+    });
+  }
+
 }

@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validator, Validators } from '@angular/forms';
 import { base } from '../../keys/con';
 import { DataService } from '../../services/data.service';
+import md5 from 'md5-ts';
+import { Observable } from 'rxjs/internal/Observable';
+
 
 
 
@@ -17,7 +20,12 @@ export class AccountComponent implements OnInit {
 
   show: boolean = false;
   mostrar: string = '';
-  dato:any;
+  dato: any;
+  ct: any;
+  img: any;
+
+  show2: boolean = false;
+  mostrar2: string = '';
 
   headers: HttpHeaders = new HttpHeaders({
     "Content-Type": "application/json"
@@ -31,24 +39,38 @@ export class AccountComponent implements OnInit {
     nac: new FormControl('')
   });
 
+  consForm = new FormGroup({
+    ps: new FormControl(''),
+    psx: new FormControl(''),
+  });
+
+  signup = new FormGroup({
+    image: new FormControl(null, [Validators.required])
+  });
+
+  fileToUpload: File = null;
+
   ngOnInit(): void {
+    this.getCountry();
     this.requestUserData();
-    
+
   }
 
   onSubmit(): void {
     //obtener data y hacer post
     const url = base + "/modifaccount";
-      this.http.post<any>(
-        url,
-        {
-          email: this.registerForm.value.email,
-          name: this.registerForm.value.name,
-          lname: this.registerForm.value.lname,
-          nac: this.registerForm.value.nac
-        },
-        { headers: this.headers }
-      ).subscribe(data => this.message());
+    this.http.post<any>(
+      url,
+      {
+        email: this.registerForm.value.email,
+        name: this.registerForm.value.name,
+        lname: this.registerForm.value.lname,
+        nac: this.registerForm.value.nac,
+        country: this.registerForm.value.country,
+        id_usuario: +this._data.id_usuario
+      },
+      { headers: this.headers }
+    ).subscribe(data => this.message());
 
   }
   requestUserData(): void {
@@ -62,21 +84,36 @@ export class AccountComponent implements OnInit {
         id_usuario: this._data.id_usuario,
       },
       { headers: this.headers }
-    ).subscribe(data => { this.modu(data)});
-    
+    ).subscribe(data => { this.modu(data) });
+
   }
 
-  modu(data){
-    this.dato=data;
-    let etx:any = this.dato;
-
+  modu(data) {
+    //console.log(this.ct);
+    this.dato = data;
+    let etx: any = this.dato;
+    let e = this.ct;
+    this.img = `${base}/public/${etx.RUTA_FOTO}`;
     this.registerForm.setValue({
       email: etx.CORREO,
       name: etx.NOMBRE,
       lname: etx.APELLIDO,
-      country: '',
+      country: e,
       nac: etx.NACIMIENTO
     });
+  }
+
+  getCountry(): void {
+    const url = `${base}/cuser/${this._data.id_usuario}`;
+    this.http.get<any>(
+      url
+    ).subscribe(data => { this.setX(data); });
+  }
+
+  setX(dta): void {
+    //console.log(dta.NOMBRE_PAIS);
+    this.ct = dta.NOMBRE_PAIS;
+    //console.log(this.ct);
   }
 
   message(): void {
@@ -89,6 +126,48 @@ export class AccountComponent implements OnInit {
     this.show = false;
   }
 
+  regresar2(): void {
+    this.show2 = false;
+  }
 
+  onSubmit2(): void {
+    //obtener data y hacer post
+    const f = md5(this.consForm.value.ps);
+
+
+    const url = base + "/modifps";
+    this.http.post<any>(
+      url,
+      {
+        id_usuario: +this._data.id_usuario,
+        ps: f
+      },
+      { headers: this.headers }
+    ).subscribe(data => this.message2());
+
+  }
+
+  message2(): void {
+
+    this.mostrar2 = "Datos actualizados"
+    this.show2 = true;
+  }
+
+  onSubmit3(): void {
+    //obtener data y hacer post
+    const formData = new FormData();
+    formData.append('image', this.fileToUpload);
+    formData.append('id_usuario', this._data.id_usuario);
+    this.http.post<any>(`${base}/flx`, formData).subscribe(
+      (res) => console.log(res),
+      (err) => console.log(err)
+    );
+
+  }
+
+  handleFileInput(files: FileList) {
+    this.fileToUpload = files.item(0);
+  }
+  
 
 }

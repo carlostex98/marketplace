@@ -29,4 +29,11 @@ export class UsersComponent implements OnInit {
     
   }
 
+  activar():void{
+    const url = base + "/actall";
+    this.http.get<any>(
+      url
+    ).subscribe(data => { console.log(data) });
+  }
+
 }
