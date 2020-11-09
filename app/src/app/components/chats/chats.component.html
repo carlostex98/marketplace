@@ -1,0 +1,65 @@
+<app-nav></app-nav>
+
+<div class="container">
+    <br>
+
+    <nav class="breadcrumb" aria-label="breadcrumbs">
+        <ul>
+          <li><a routerLink="/home">Inicio</a></li>
+          <li class="is-active"><a href="#" aria-current="page">chats</a></li>
+        </ul>
+      </nav>
+    <br>
+
+    <h2>Chats con Vendedores</h2>
+    <br>
+    <div class="inbox-messages" *ngFor="let p of clientes">
+        <div class="card active">
+            <div class="card-content">
+                <div class="msg-header">
+                    <span class="msg-from">
+                        <small>Usuario: {{p.NOMBRE}}  {{p.APELLIDO}}</small>
+                    </span>
+
+                </div>
+                <div class="buttons has-addons is-right" >
+                    <button class="button" routerLink="/conv/{{p.ID_CONS}}" >Ir al chat</button>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <br>
+
+
+    <br>
+    <br>
+
+    <h2>Chats con Clientes</h2>
+    <br>
+    <div class="inbox-messages" *ngFor="let p of vendedores">
+        <div class="card active">
+            <div class="card-content">
+                <div class="msg-header">
+                    <span class="msg-from">
+                        <small>Usuario: {{p.NOMBRE}}  {{p.APELLIDO}}</small>
+                    </span>
+
+                </div>
+                <div class="buttons has-addons is-right" >
+                    <button class="button" routerLink="/conv/{{p.ID_CONS}}" >Ir al chat</button>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <br>
+
+    <br>
+    <!-- total carrito -->
+
+</div>
+
+<app-footer></app-footer>

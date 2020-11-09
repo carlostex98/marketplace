@@ -1,0 +1,134 @@
+<app-nav></app-nav>
+<br>
+<section class="hero ">
+    <div class="hero-body">
+        <div class="container">
+            <nav class="breadcrumb" aria-label="breadcrumbs">
+                <ul>
+                    <li><a routerLink="/home">Inicio</a></li>
+                    <li class="is-active"><a href="#" aria-current="page">{{productos.PRODUCTO}}</a></li>
+                </ul>
+            </nav>
+
+            <section class="section">
+                <div class="columns">
+                    <div class="column is-8 is-offset-2">
+                        <div class="content is-medium">
+
+                            <h1 class="title"> {{productos.PRODUCTO}} </h1>
+                            
+                            <h2 class="subtitle is-4">Usuario: {{productos.USUARIO}} {{productos.APELLIDO}}</h2>
+                            <h2 class="subtitle is-4">Precio: {{productos.PRECIO}} </h2>
+                            <h2 class="subtitle is-5">categoria: {{productos.CATEGORIA}} </h2>
+                            <p> Palabras clave: {{productos.P_CLAVE}} </p>
+                            <p>Detalle: {{productos.DETALLE}} </p>
+
+                            <div class="buttons has-addons">
+                                <button class="button" (click)="like()">Likes ({{l}})</button>
+                                <button class="button" (click)="dislike()">Dislike ({{d}})</button>
+                                <button class="button">{{texto}}</button>
+                            </div>
+
+                            <br>
+
+                            <button class="button" (click)="toCart()" >Agregar al carrito</button>
+                            <button class="button" (click)="irChat(productos.ID_USUARIO)" >Chatear con el vendedor</button>
+
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+            <div class="is-divider"></div>
+
+            <section class="section">
+                <div class="columns">
+                    <div class="column is-8 is-offset-2">
+                        <div class="content is-medium">
+                            <h1 class="subtitle is-4">Cometarios</h1>
+
+                            <form [formGroup]="comForm">
+                                <div class="field has-addons">
+                                    <div class="control">
+                                        <input class="input" type="text" placeholder="agrega tu comentario"
+                                            formControlName="com">
+                                    </div>
+                                    <div class="control buttons">
+
+                                        <a class="button is-info" (click)="addComment()">
+                                            Agregar
+                                        </a>
+                                        <a class="button is-info" (click)="openmodal()">
+                                            Hacer denuncia
+                                        </a>
+                                    </div>
+                                </div>
+                            </form>
+                            <br>
+
+                            <div class="modal is-active" *ngIf="mostrar">
+                                <div class="modal-background"></div>
+                                <div class="modal-content">
+                                    <div class="notification">
+                                        <button class="modal-close is-large" aria-label="close"
+                                            (click)="closemodal()"></button>
+                                        <h2>Comenta que no te gusta de este producto</h2>
+                                        <form [formGroup]="denForm">
+                                            <textarea class="textarea" placeholder="comentario"
+                                                formControlName="den"></textarea>
+                                            <br>
+                                            <div class="buttons">
+                                                <button class="button is-primary" (click)="denuncia()">Enviar</button>
+                                                <button class="button is-link" (click)="closemodal()">Cancelar</button>
+                                            </div>
+                                        </form>
+                                        <br>
+
+                                        <div class="notification" *ngIf="comp">
+                                            <button class="delete"></button>
+                                            {{mensaje}}
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                            <div class="inbox-messages">
+                                <div *ngFor="let cox of comentarios.slice().reverse()" class="card active">
+                                    <div class="card-content">
+                                        <div class="msg-header">
+                                            <span class="msg-from">
+                                                <small>De: {{cox.NOMBRE}} {{cox.APELLIDO}} </small>
+                                            </span>
+
+                                        </div>
+                                        <div class="msg-subject">
+                                            <span class="msg-subject">
+                                                <strong> {{cox.FECHA}} </strong>
+                                            </span>
+                                        </div>
+                                        <div class="msg-snippet">
+                                            <p id="fake-snippet-1">{{cox.COMENTARIO}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+        </div>
+    </div>
+</section>
+<br>
+<app-footer></app-footer>

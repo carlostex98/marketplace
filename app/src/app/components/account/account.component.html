@@ -1,0 +1,119 @@
+<app-nav></app-nav>
+<section class="section">
+    <div class="container">
+
+        <div>
+            <form [formGroup]="registerForm">
+
+
+                <div class="field">
+                    <label class="label">Correo</label>
+                    <div class="control">
+                        <input class="input" type="text" placeholder="Text input" formControlName="email" readonly>
+                    </div>
+                </div>
+
+
+                <div class="field">
+                    <label class="label">Nombres</label>
+                    <div class="control">
+                        <input class="input" type="text" placeholder="Text input" formControlName="name">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="label">Apellidos</label>
+                    <div class="control">
+                        <input class="input" type="text" placeholder="Text input" formControlName="lname">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="label">Pais</label>
+                    <div class="control">
+                        <input class="input" type="text" placeholder="Text input" formControlName="country">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="label">Fecha de nacimiento</label>
+                    <div class="control">
+                        <input class="input" type="text" placeholder="Text input" formControlName="nac">
+                    </div>
+                </div>
+
+
+
+
+                <div class="field is-grouped">
+                    <div class="control">
+                        <button class="button is-link" (click)="onSubmit()">editar</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+        <br>
+        <div *ngIf="show">
+            <div class="notification is-danger is-light">
+                <button class="delete" (click)="regresar()"></button>
+                {{mostrar}}
+            </div>
+        </div>
+
+        <br>
+        <br>
+        <div>
+            <form [formGroup]="consForm">
+
+
+                <div class="field">
+                    <label class="label">Contraseña</label>
+                    <div class="control">
+                        <input class="input" type="text" placeholder="Text input" formControlName="ps">
+                    </div>
+                </div>
+
+
+                <div class="field">
+                    <label class="label">Confirmar Contraseña</label>
+                    <div class="control">
+                        <input class="input" type="text" placeholder="Text input" formControlName="psx">
+                    </div>
+                </div>
+
+
+
+
+
+                <div class="field is-grouped">
+                    <div class="control">
+                        <button class="button is-link" (click)="onSubmit2()">editar</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+        <br>
+        <div *ngIf="show2">
+            <div class="notification is-danger is-light">
+                <button class="delete" (click)="regresar2()"></button>
+                {{mostrar2}}
+            </div>
+        </div>
+
+        <br>
+        <figure class="image is-128x128">
+            <img src="{{img}}">
+        </figure>
+        <br>
+        <form>
+            <input type="file" (change)="handleFileInput($event.target.files)">
+            <div class="control">
+                <button class="button is-link" (click)="onSubmit3()">cambiar</button>
+            </div>
+        </form>
+
+    </div>
+</section>
+<app-footer></app-footer>

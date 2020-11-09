@@ -25,6 +25,7 @@ import { DenunciasComponent } from './components/denuncias/denuncias.component';
 import { ChatsComponent } from './components/chats/chats.component';
 import { ConvComponent } from './components/conv/conv.component';
 import { ReportsComponent } from './components/reports/reports.component';
+import { RecoverComponent } from './components/recover/recover.component';
 
 const route : Routes =[
   {
@@ -103,6 +104,10 @@ const route : Routes =[
     path: 'reports',
     component: ReportsComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'recover',
+    component: RecoverComponent
   }
 ];
 
@@ -126,7 +131,8 @@ const route : Routes =[
     DenunciasComponent,
     ChatsComponent,
     ConvComponent,
-    ReportsComponent
+    ReportsComponent,
+    RecoverComponent
   ],
   imports: [
     HttpClientModule,

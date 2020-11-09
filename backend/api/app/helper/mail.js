@@ -17,6 +17,7 @@ async function send(sub, content) {
     },
   });
 
+  //sub.trim();
   // send mail with defined transport object
   let info = await transporter.sendMail({
     from: '"MarketPlace" <carlostex98@gmail.com>', // sender address

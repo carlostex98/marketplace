@@ -42,14 +42,14 @@ async function reporte4(){
 
 async function reporte5(){
     const sql = `select nombre, apellido, correo, creditos from usuarios
-    where ROWNUM <= 10
+    where ROWNUM <= 10 and tipo = 'C'
     order by creditos asc`;
     let a = (await qq.run(sql, [], false)).rows;
     return a;
 }
 async function reporte5x(){
     const sql = `select nombre, apellido, correo, creditos from usuarios
-    where ROWNUM <= 10
+    where ROWNUM <= 10 and tipo = 'C'
     order by creditos desc`;
     let a = (await qq.run(sql, [], false)).rows;
     return a;

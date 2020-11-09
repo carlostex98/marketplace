@@ -1,0 +1,44 @@
+<app-nav></app-nav>
+
+<div class="container">
+    <br>
+    <br>
+
+    <div class="buttons has-addons is-centered">
+        <button class="button" (click)="vaciarcart()" >Vaciar mi carrito</button>
+        <button class="button" (click)="comprar()" >Comprar todo</button>
+    </div>
+    <br>
+    <div class="inbox-messages" *ngFor="let p of prods">
+        <div class="card active">
+            <div class="card-content">
+                <div class="msg-header">
+                    <span class="msg-from">
+                        <small>Producto: {{p.NOMBRE}}</small>
+                    </span>
+
+                </div>
+                <div class="msg-subject">
+                    <span class="msg-subject">
+                        <strong>Precio {{p.PRECIO}} </strong>
+                    </span>
+                </div>
+                <div class="msg-snippet">
+                    <p>Cantidad: {{p.CANTIDAD}}</p>
+                </div>
+                <div class="buttons has-addons is-right">
+                    <button class="button" (click)="modCant(p.ID_PRODUCTO,p.CANTIDAD)">Agregar uno</button>
+                    <button class="button" (click)="quitar(p.ID_PRODUCTO)">Quitar de aqui</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <br>
+    <h2> Monto:  {{money}}</h2>
+    <br>
+    <!-- total carrito -->
+
+</div>
+
+<app-footer></app-footer>

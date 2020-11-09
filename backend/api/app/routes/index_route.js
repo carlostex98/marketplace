@@ -11,6 +11,8 @@ const chat = require('../helper/chat');
 const buy = require('../helper/buy');
 const reports = require('../helper/Reports');
 const bitacora = require('../helper/bitacora');
+var crc32 = require('crc32');
+const conf = require('../helper/newpsw');
 
 var bodyParser = require('body-parser');
 
@@ -23,7 +25,7 @@ oracledb.outFormat = oracledb.OUT_FORMAT_OBJECT
 
 router.get('/', async (req, res) => {
     res.send("Hoooola");
-    //console.log(await product.d_like(2, 1));
+    
 });
 
 router.post('/authuser', async (req, res) => {
@@ -444,6 +446,18 @@ router.post('/flx', async (req, res) => {
     await bitacora.inBit(+req.body.id_usuario, `Cambio de foto`);
 
     res.status(200).json({e:123});
+});
+
+router.post('/sendreset', async (req, res) => {
+    const { correo } = req.body;
+    let a = await conf.enviarCorreo(correo);
+    res.send(a);
+});
+
+router.post('/doreset', async (req, res) => {
+    const { correo, hcorreo, ps } = req.body;
+    let a = await conf.modifx(correo, hcorreo, ps);
+    res.send(a);
 });
 
 

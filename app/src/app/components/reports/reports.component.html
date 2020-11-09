@@ -1,0 +1,216 @@
+<app-nav></app-nav>
+
+<div class="container">
+    <br>
+    <br>
+
+    <div class="buttons has-addons is-centered">
+        <button class="button" (click)="etiqueta(0)">Bitacora</button>
+        <button class="button" (click)="etiqueta(1)">Reporte 2</button>
+        <button class="button" (click)="etiqueta(2)">Reporte 3</button>
+        <button class="button" (click)="etiqueta(3)">Reporte 4</button>
+        <button class="button" (click)="etiqueta(4)">Reporte 5</button>
+        <button class="button" (click)="etiqueta(5)">Reporte 6</button>
+        <button class="button" (click)="etiqueta(6)">Reporte 7</button>
+        <button class="button" (click)="etiqueta(7)">Reporte 8</button>
+    </div>
+
+    <br>
+
+    <div *ngIf="etq[0]">
+        <br>
+        <button class="button" (click)="cambio()">Invertir</button>
+        <br>
+        <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Correo</th>
+                    <th>Fecha</th>
+                    <th>Asunto</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr *ngFor="let cat of r1">
+                    <td>{{cat.NOMBRE}} {{cat.APELLIDO}}</td>
+                    <td>{{cat.CORREO}}</td>
+                    <td>{{cat.FECHA}}</td>
+                    <td>{{cat.ASUNTO}}</td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="etq[1]">
+        <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Producto</th>
+                    <th>Ventas</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr *ngFor="let cat of r2">
+                    <td>{{cat.NOMBRE}} {{cat.APELLIDO}}</td>
+                    <td>{{cat.PRODUCTO}}</td>
+                    <td>{{cat.VENTAS}}</td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="etq[2]">
+        <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Producto</th>
+                    <th>Likes</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr *ngFor="let cat of r3">
+                    <td>{{cat.NOMBRE}} {{cat.APELLIDO}}</td>
+                    <td>{{cat.PRODUCTO}}</td>
+                    <td>{{cat.LIKES}}</td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="etq[3]">
+        <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Producto</th>
+                    <th>Dislikes</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr *ngFor="let cat of r4">
+                    <td>{{cat.NOMBRE}} {{cat.APELLIDO}}</td>
+                    <td>{{cat.PRODUCTO}}</td>
+                    <td>{{cat.DISLIKES}}</td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="etq[4]">
+        <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Correo</th>
+                    <th>Creditos</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr *ngFor="let cat of r5">
+                    <td>{{cat.NOMBRE}} {{cat.APELLIDO}}</td>
+                    <td>{{cat.CORREO}}</td>
+                    <td>{{cat.CREDITOS}}</td>
+                </tr>
+
+            </tbody>
+        </table>
+        <br>
+        <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Correo</th>
+                    <th>Creditos</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr *ngFor="let cat of r5x">
+                    <td>{{cat.NOMBRE}} {{cat.APELLIDO}}</td>
+                    <td>{{cat.CORREO}}</td>
+                    <td>{{cat.CREDITOS}}</td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="etq[5]">
+        <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Correo</th>
+                    <th>Fecha</th>
+                    <th>N. denuncias</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr *ngFor="let cat of r6">
+                    <td>{{cat.NOMBRE}} {{cat.APELLIDO}}</td>
+                    <td>{{cat.CORREO}}</td>
+                    <td>{{cat.FECHA_NAC}}</td>
+                    <td>{{cat.CANT}}</td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="etq[6]">
+        <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Correo</th>
+                    <th>creditos</th>
+                    <th>N. publicaciones</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr *ngFor="let cat of r7">
+                    <td>{{cat.NOMBRE}} {{cat.APELLIDO}}</td>
+                    <td>{{cat.CORREO}}</td>
+                    <td>{{cat.CREDITOS}}</td>
+                    <td>{{cat.CANT}}</td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="etq[7]">
+        <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+            <thead>
+                <tr>
+                    <th>Pais</th>
+                    <th>Creditos</th>
+                    <th>Productos</th>
+                    <th>Usuarios</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr *ngFor="let cat of r8">
+                    <td>{{cat.NOMBRE_PAIS}}</td>
+                    <td>{{cat.CREDITOS}}</td>
+                    <td>{{cat.PRODUCTOS}}</td>
+                    <td>{{cat.USUARIOS}}</td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+
+    <br>
+    <!-- total carrito -->
+
+</div>
+
+<app-footer></app-footer>

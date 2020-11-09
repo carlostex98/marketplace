@@ -19,6 +19,6 @@ app.set('port', 3000);
 app.use('/public', express.static(__dirname + '/public'));
 app.use(require('./app/routes/index_route'));
 
-app.listen(app.get('port'), () => {
+app.listen(app.get('port'),"0.0.0.0", () => {
     console.log('Server is in port', app.get('port'));
 });
