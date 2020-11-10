@@ -3,7 +3,12 @@
 <div class="container">
     <br>
     <br>
-
+    <nav class="breadcrumb" aria-label="breadcrumbs">
+        <ul>
+            <li><a routerLink="/dashboard">Inicio</a></li>
+            <li class="is-active"><a href="#" aria-current="page">Denuncias</a></li>
+        </ul>
+    </nav>
     <br>
     <div class="inbox-messages" *ngFor="let p of denuncias">
         <div class="card active">

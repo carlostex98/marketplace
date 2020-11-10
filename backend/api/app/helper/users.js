@@ -41,7 +41,7 @@ async function register(email, name, lname, country, nac, pss) {
 
     const in_usr = `insert into usuarios(id_usuario, nombre, apellido, correo, nacimiento, ruta_foto, contrasenia, creditos, tipo)
     values (:a, :b, :c, :d, :f, :g, :h, :i, :j)`;
-    await qq.run(in_usr, [ids + 1, name, lname, email, nac, 'default.jpg', pss, 10000, 'C'], true);
+    await qq.run(in_usr, [ids + 1, name, lname, email, nac, 'default.jpg', pss, 10000, 'B'], true);
 
 
     //crea carrito
@@ -59,7 +59,7 @@ async function register(email, name, lname, country, nac, pss) {
 
 
     //enviar correo
-    /*let cod = md5(email);
+    let cod = md5(email);
     let body = `<h1>Codigo de activacion de cuenta</h1>
     <br>
     <strong>${cod}</strong>`;
@@ -67,7 +67,7 @@ async function register(email, name, lname, country, nac, pss) {
         await mail.send(email, body);
     } catch (error) {
         console.log(error);
-    }*/
+    }
 
     return 'usr_create';
 
@@ -101,7 +101,10 @@ async function listar() {
 }
 
 async function getuser(id) {
-    const sql = `select * from usuarios where tipo = :a and id_usuario = :f`;
+    const sql = `select * from usuarios 
+    inner join pais_usuario pu on usuarios.id_usuario = pu.id_usuario_fk
+    inner join paises p on p.id_pais = pu.id_pais_fk
+    where tipo = :a and id_usuario = :f`;
     const a = (await qq.run(sql, ['C', id], false)).rows;
     return a[0];
 }

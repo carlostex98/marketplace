@@ -51,9 +51,9 @@ export class AccountComponent implements OnInit {
   fileToUpload: File = null;
 
   ngOnInit(): void {
-    this.getCountry();
+    
     this.requestUserData();
-
+    
   }
 
   onSubmit(): void {
@@ -89,7 +89,7 @@ export class AccountComponent implements OnInit {
   }
 
   modu(data) {
-    //console.log(this.ct);
+    this.getCountry();
     this.dato = data;
     let etx: any = this.dato;
     let e = this.ct;
@@ -98,7 +98,7 @@ export class AccountComponent implements OnInit {
       email: etx.CORREO,
       name: etx.NOMBRE,
       lname: etx.APELLIDO,
-      country: e,
+      country: etx.NOMBRE_PAIS,
       nac: etx.NACIMIENTO
     });
   }
@@ -162,7 +162,7 @@ export class AccountComponent implements OnInit {
       (res) => console.log(res),
       (err) => console.log(err)
     );
-
+      this.requestUserData();
   }
 
   handleFileInput(files: FileList) {

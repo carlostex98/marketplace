@@ -14,7 +14,7 @@
       </nav>
     <br>
 
-
+    
     <form  [formGroup]="comForm">
         <div class="field is-horizontal">
             <div class="field-label is-normal">
@@ -37,7 +37,7 @@
                 <div class="field">
                     <div class="control">
                         <button class="button is-primary"  (click)="enviarMsj()">
-                            Send message
+                            Enviar mensaje
                         </button>
                     </div>
                 </div>
@@ -47,6 +47,9 @@
 
 
 
+    <br>
+    <button class="button is-primary" (click)="llenarMensajes()"> Refrescar</button>
+    <br>
     <br>
     <div class="inbox-messages" *ngFor="let p of mens.slice().reverse()">
         <div class="card active">

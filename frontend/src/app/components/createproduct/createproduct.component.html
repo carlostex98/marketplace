@@ -1,10 +1,17 @@
 <app-nav></app-nav>
 <div class="container">
 
+    <nav class="breadcrumb" aria-label="breadcrumbs">
+        <ul>
+            <li><a routerLink="/home">Inicio</a></li>
+            <li class="is-active"><a href="#" aria-current="page">Creacion de producto</a></li>
+        </ul>
+    </nav>
+    <br>
     <div>
         <form [formGroup]="registerForm">
 
-            
+
             <div class="field">
                 <label class="label">Nombre del producto</label>
                 <div class="control">
@@ -28,8 +35,8 @@
             </div>
 
             <div class="select">
-                <select  formControlName="cat_id">
-                  <option *ngFor="let cat of dato" value="{{cat.ID_CATEGORIA}}"> {{cat.NOMBRE}} </option>
+                <select formControlName="cat_id">
+                    <option *ngFor="let cat of dato" value="{{cat.ID_CATEGORIA}}"> {{cat.NOMBRE}} </option>
                 </select>
             </div>
 
@@ -39,7 +46,7 @@
                     <input class="input" type="text" placeholder="Text input" formControlName="claves">
                 </div>
             </div>
-            
+
             <br>
             <br>
 
@@ -54,7 +61,7 @@
     <br>
     <div *ngIf="show">
         <div class="notification is-danger is-light">
-            <button class="delete"  (click)="regresar()"></button>
+            <button class="delete" (click)="regresar()"></button>
             {{mostrar}}
         </div>
     </div>

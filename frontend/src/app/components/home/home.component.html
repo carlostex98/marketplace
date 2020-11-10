@@ -37,22 +37,28 @@
             <div class="field">
                 <label class="label">Palabras clave</label>
                 <div class="control">
-                    <input class="input" type="text" placeholder="Text input" formControlName="claves">
+                    <input class="input" type="text" placeholder="escribe algo" formControlName="claves">
                 </div>
             </div>
             <br>
-            <div class="select">
-                
-                <select formControlName="cat_id">
-                    <option *ngFor="let cat of dato" value="{{cat.NOMBRE}}"> {{cat.NOMBRE}} </option>
-                </select>
-
+            <div class="field" >
+                <label class="label">Categorias</label>
+                <div class="select">
+                    
+                    <select formControlName="cat_id">
+                        <option *ngFor="let cat of dato" value="{{cat.NOMBRE}}"> {{cat.NOMBRE}} </option>
+                    </select>
+    
+                </div>
             </div>
+            <br>
+            <br>
+            
         </form>
 
 
 
-        <div class="buttons has-addons is-right">
+        <div class="buttons has-addons is-centered">
             <button class="button" (click)="limpiar()">Limpiar filtros</button>
             <button class="button" (click)="submitCat()">Buscar categoria</button>
             <button class="button" (click)="submitClave()" >Buscar palabras clave</button>

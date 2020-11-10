@@ -1,7 +1,12 @@
 <app-nav></app-nav>
 <section class="section">
     <div class="container">
-
+        <nav class="breadcrumb" aria-label="breadcrumbs">
+            <ul>
+                <li><a routerLink="/home">Inicio</a></li>
+                <li class="is-active"><a href="#" aria-current="page">Creacion de producto</a></li>
+            </ul>
+        </nav>
         <div>
             <form [formGroup]="registerForm">
 
@@ -103,12 +108,15 @@
         </div>
 
         <br>
-        <figure class="image is-128x128">
+        <figure class="image is-square">
             <img src="{{img}}">
         </figure>
         <br>
         <form>
             <input type="file" (change)="handleFileInput($event.target.files)">
+            <br>
+            <br>
+
             <div class="control">
                 <button class="button is-link" (click)="onSubmit3()">cambiar</button>
             </div>

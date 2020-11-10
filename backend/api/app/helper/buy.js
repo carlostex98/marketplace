@@ -26,14 +26,14 @@ async function comprar(id_usuario) {
     let cart = await verCarrito(id_usuario);
 
     for (const prod of cart) {
-        //await alertarCompra(prod.ID_PRODUCTO, prod.NOMBRE, prod.PRECIO, prod.CANTIDAD);
+        await alertarCompra(prod.ID_PRODUCTO, prod.NOMBRE, prod.PRECIO, prod.CANTIDAD);
         await transferirVendedor(prod.ID_PRODUCTO, prod.PRECIO, prod.CANTIDAD);
     }
 
 
     //fin vendedores
     await debitarCliente(id_usuario, a2);
-    //await notificarComprador(id_usuario,cart, a2);
+    await notificarComprador(id_usuario,cart, a2);
     await eliminarCarritoTodo(id_usuario);
     return { mensaje: "yes" }
 
