@@ -32,6 +32,11 @@
               <a routerLink="/recover" > He olvidado mi contraseña </a>
             </div>
         </div>
+        <div class="field">
+            <div class="control">
+              <a routerLink="/confirm" > Confirmar cuenta</a>
+            </div>
+        </div>
         <div class="notification is-danger is-light"  *ngIf="err">
             <button class="delete" (click)="dismiss()" ></button>
             {{mensaje}}

@@ -22,7 +22,7 @@
         <div *ngIf="steps">
             <form [formGroup]="st2Form" >
                 <div class="field">
-                    <label class="label">Correo</label>
+                    <label class="label">Codigo</label>
                     <div class="control">
                         <input class="input" type="text" placeholder="Codigo" formControlName="cod" >
                     </div>
@@ -37,6 +37,13 @@
                 <div class="field is-grouped">
                     <div class="control">
                         <button class="button is-link" (click)="submitTwo()" >Ingresar</button>
+                    </div>
+                </div>
+
+                <div *ngIf="show2">
+                    <div class="notification is-danger is-light">
+                        <button class="delete" (click)="regresar2()"></button>
+                        {{mostrar2}}
                     </div>
                 </div>
             </form>

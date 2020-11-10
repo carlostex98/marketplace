@@ -17,6 +17,9 @@ export class RecoverComponent implements OnInit {
     "Content-Type": "application/json"
   });
 
+  mostrar2 = "";
+  show2 = false;
+
   st1Form = new FormGroup({
     correo: new FormControl('')
   });
@@ -52,7 +55,18 @@ export class RecoverComponent implements OnInit {
         ps: this.st2Form.value.ps
       },
       { headers: this.headers }
-    ).subscribe(data => { console.log(data) });
+    ).subscribe(data => { this.message2(data); });
+  }
+
+  message2(data): void {
+
+    this.mostrar2 = "Si los datos coinciden la contraseña de ha actualizado"
+    this.show2 = true;
+  }
+
+  regresar2(): void {
+    this.show2 = false;
+    
   }
 
 }

@@ -113,6 +113,11 @@ async function transferirVendedor(id_producto, precio, cantidad) {
     const sql = `update usuarios set creditos = :a where id_usuario = :b`;
     await qq.run(sql, [transferir, id_usr], true);
 
+    const sm = `select ventas from productos where id_producto = :a`;
+    let az = (await qq.run(sm, [id_producto], false)).rows[0].VENTAS;
+
+    const sq2 = `update productos set ventas = :a where id_producto = :b`;
+    await qq.run(sq2, [cantidad+az, id_producto], true);
 
 }
 
@@ -159,4 +164,11 @@ async function notificarComprador(id_usuario, productos, total){
     }
 }
 
+async function creditos(id_usuario){
+    const sql = `select creditos from usuarios where id_usuario = :a`;
+    let a = (await qq.run(sql, [id_usuario], false)).rows[0].CREDITOS;
+    return {creditos: a};
+}
+
 module.exports.comprar = comprar;
+module.exports.creditos = creditos;

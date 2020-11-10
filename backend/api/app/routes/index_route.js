@@ -460,6 +460,12 @@ router.post('/doreset', async (req, res) => {
     res.send(a);
 });
 
+router.get('/creditos/:ids', async (req, res) => {
+    const a = req.params.ids;
+    const e = await buy.creditos(a);
+    res.send(e);
+});
+
 
 
 module.exports = router;

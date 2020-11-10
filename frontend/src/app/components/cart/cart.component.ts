@@ -15,6 +15,10 @@ export class CartComponent implements OnInit {
 
   prods: any = new Array;
   money = 0;
+  crx = 0;
+
+  mostrar2 = "";
+  show2 = false;
 
   constructor(public http: HttpClient, private _data: DataService, private router: Router) { }
 
@@ -24,8 +28,9 @@ export class CartComponent implements OnInit {
 
   ngOnInit(): void {
     this.llenarCarro();
+    this.getCreditos();
   }
-
+ 
 
   llenarCarro(): void {
     let e = +(this._data.id_usuario);
@@ -131,8 +136,42 @@ export class CartComponent implements OnInit {
         id_usuario: s
       },
       { headers: this.headers }
-    ).subscribe(data => { console.log(data) });
+    ).subscribe(data => { this.intr(data);});
   }
 
+  intr(data):void{
+    this.message2();
+    this.llenarCarro();
+    this.llenarCarro();
+    this.llenarCarro();
+    this.llenarCarro();
+    this.llenarCarro();
+    this.llenarCarro();
+    this.getCreditos();
+  }
+
+  regresar2(data): void {
+    this.show2 = false;
+    
+  }
+
+  getCreditos():void{
+    let e = +(this._data.id_usuario);
+
+    const url = `${base}/creditos/${e}`;
+    this.http.get<any>(
+      url
+    ).subscribe(data => { this.setcr(data)});
+  }
+
+  setcr(a):void{
+    this.crx = a.creditos;
+  }
+
+  message2(): void {
+
+    this.mostrar2 = "Compra realizada"
+    this.show2 = true;
+  }
 
 }

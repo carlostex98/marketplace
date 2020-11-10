@@ -14,6 +14,7 @@
         <button class="button" (click)="vaciarcart()" >Vaciar mi carrito</button>
         <button class="button" (click)="comprar()" >Comprar todo</button>
     </div>
+    <h2> Tus creditos: {{crx}}</h2>
     <br>
     <div class="inbox-messages" *ngFor="let p of prods">
         <div class="card active">
@@ -44,6 +45,12 @@
     <h2> Monto:  {{money}}</h2>
     <br>
     <!-- total carrito -->
+    <div *ngIf="show2">
+        <div class="notification is-danger is-light">
+            <button class="delete" (click)="regresar2()"></button>
+            {{mostrar2}}
+        </div>
+    </div>
 
 </div>
 

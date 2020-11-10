@@ -16,7 +16,7 @@ async function enviarCorreo(mailx) {
         } catch (error) {
             console.log(error);
         }
-        console.log('yes');
+        //console.log('yes');
     }
     return { e: 'doki' };
 }
