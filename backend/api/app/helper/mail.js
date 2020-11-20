@@ -12,8 +12,8 @@ async function send(sub, content) {
     host: "smtp.gmail.com",
     auth: {
       type:'login',
-      user: 'carlostex98@gmail.com', 
-      pass: 'Carlos9198!!', 
+      user: 'yourmail@gmail.com', 
+      pass: 'xxxxxxxxx', 
     },
   });
 
